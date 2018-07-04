@@ -16,13 +16,17 @@ class Environment:
 	
 	def __init__(self, filename_maze, filename_a, file_op):
 		
-
+		#Input maze -
 		self.filename_maze = filename_maze
+		#File containing sequence of actions - 
 		self.filename_a = filename_a
+		#File to write output policy to -
 		self.opfile = file_op
 
 		self.op = open(file_op, 'w')
 		
+		'''The flag 'is_terminal' informs the agent whether it has reached
+		goal state or not. 1 means that the agent has moved into the goal state.'''
 		self.is_terminal = 0
 		
 		self.actions = np.genfromtxt(filename_a, dtype = int,delimiter = ' ')		
@@ -45,7 +49,11 @@ class Environment:
 		self.state = [len(self.maze)-1, 0]
 
 
-
+	'''
+	step(action) returns the next state of the agent once it has taken an 'action'.
+	It returns the same state if the action taken by the agent leads it to an obstacle
+	or outside the maze boundaries.
+	'''
 	def step(self, action):
 		
 		if action == 0:
@@ -91,7 +99,8 @@ class Environment:
 		if self.a[self.state[0]][self.state[1]] == 'G':
 			self.is_terminal = 1
 
-
+		
+		#Writing to the output file - 
 		self.op.write(str(self.state[0]))
 		self.op.write(" ")
 		self.op.write(str(self.state[1]))
@@ -103,10 +112,8 @@ class Environment:
 
 
 
-
+	'''Resets the agent's state to the Initial State'''
 	def reset(self):
-
-		#Resets the state to the Initial State.
 
 		self.state = [len(self.maze)-1, 0]
 
@@ -119,7 +126,7 @@ def main():
 	#maze ip -
 	filename = sys.argv[1]
 
-	#opfile - 2
+	#output file - 2
 	opfile = sys.argv[2]
 
 	#action file - 3
