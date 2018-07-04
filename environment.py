@@ -25,8 +25,8 @@ class Environment:
 
 		self.op = open(file_op, 'w')
 		
-		'''The flag 'is_terminal' informs the agent whether it has reached
-		goal state or not. 1 means that the agent has moved into the goal state.'''
+		"""The flag 'is_terminal' informs the agent whether it has reached
+		goal state or not. 1 means that the agent has moved into the goal state."""
 		self.is_terminal = 0
 		
 		self.actions = np.genfromtxt(filename_a, dtype = int,delimiter = ' ')		
@@ -49,11 +49,11 @@ class Environment:
 		self.state = [len(self.maze)-1, 0]
 
 
-	'''
+	"""
 	step(action) returns the next state of the agent once it has taken an 'action'.
 	It returns the same state if the action taken by the agent leads it to an obstacle
 	or outside the maze boundaries.
-	'''
+	"""
 	def step(self, action):
 		
 		if action == 0:
@@ -112,7 +112,7 @@ class Environment:
 
 
 
-	'''Resets the agent's state to the Initial State'''
+	"""Resets the agent's state to the Initial State"""
 	def reset(self):
 
 		self.state = [len(self.maze)-1, 0]
